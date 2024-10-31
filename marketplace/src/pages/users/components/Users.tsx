@@ -42,12 +42,14 @@ const Users: React.FC = () => {
   return (
     <div>
       <h1>Users</h1>
-      {loading && <p>Loading...</p>}{' '}
-      {error && <p>Error: {error}</p>}
-      <ul>
+      {loading && <p>Loading...</p>} {error && <p>Error: {error}</p>}
+      <ul className="users-list">
         {users.map((user) => (
-          <li key={user.id}>
-            {user.name.firstname} {user.name.lastname} - {user.email}{' '}
+          <li className="user-item" key={user.id}>
+            <span className="user-name">
+              {user.name.firstname} {user.name.lastname}
+            </span>
+            <span className="user-email">{user.email}</span>
           </li>
         ))}
       </ul>

@@ -8,7 +8,7 @@ import HomePage from '../pages/home/HomePage';
 import ProductsPage from '../pages/products/components/ProductsPage';
 import CategoriesPage from '../pages/categories/CategoriesPage';
 import UsersPage from '../pages/users/components/Users';
-import Cart from '../pages/cart/Cart';
+import Cart from '../pages/cart/CartUser';
 import NotFoundPage from '../components/NotFoundPage';
 import Layout from '../components/layout/Layout';
 import LoginPage from '../pages/auth/LoginPage';

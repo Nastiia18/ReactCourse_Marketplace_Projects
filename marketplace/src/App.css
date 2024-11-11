@@ -38,7 +38,7 @@
 }
 
 .read-the-docs {
-  color: #888;
+  color: white;
 }
 
 nav {
@@ -78,19 +78,26 @@ nav li a:hover {
   color: #d3d3d3;
 }
 
-/*продукт*/
 
-.products-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.product-item {
-  display: flex;
-  justify-content: space-between;
+th, td {
   padding: 10px;
+  text-align: left;
   border-bottom: 1px solid #ccc;
+}
+
+th {
+  font-weight: bold;
+  background-color: #E4E5EA;
+}
+
+td img {
+  border-radius: 5px;
 }
 
 .product-title {
@@ -100,18 +107,23 @@ nav li a:hover {
 .product-price {
   color: #007BFF;
 }
+
+tr:hover {
+  background-color: #E4E5EA;
+}
+
 /*юзер*/
 .users-list {
-  list-style-type: none; /* Прибираємо крапки */
-  padding: 0; /* Внутрішні відступи */
-  margin: 0; /* Зовнішні відступи */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .user-item {
-  display: flex; /* Використовуємо Flexbox для вирівнювання елементів */
-  justify-content: space-between; /* Вирівнюємо текст по краях */
-  padding: 10px; /* Внутрішні відступи для кожного користувача */
-  border-bottom: 1px solid #ccc; /* Лінія розділу між користувачами */
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .user-name {
@@ -120,6 +132,77 @@ nav li a:hover {
 }
 
 .user-email {
-  color: #007BFF; /* Колір для електронної пошти */
+  color: #007BFF;
 }
+
+/*login*/
+
+
+.login-container {
+  background: #f2f2f4;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form-container .form-input {
+  background: #f2f2f4;
+  border: 0.5px solid #033572;
+}
+.login-header {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.login-form-container {
+  padding: 1.5em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 5px;
+
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.form-input:focus {
+  border-color: #033572;
+  outline: none;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #394C60 ;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #6682a4;
+}
+
 

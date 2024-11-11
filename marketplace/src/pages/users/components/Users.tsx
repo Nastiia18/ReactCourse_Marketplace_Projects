@@ -43,16 +43,30 @@ const Users: React.FC = () => {
     <div>
       <h1>Users</h1>
       {loading && <p>Loading...</p>} {error && <p>Error: {error}</p>}
-      <ul className="users-list">
-        {users.map((user) => (
-          <li className="user-item" key={user.id}>
-            <span className="user-name">
-              {user.name.firstname} {user.name.lastname}
-            </span>
-            <span className="user-email">{user.email}</span>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.name.firstname}</td>
+              <td>{user.name.lastname}</td>
+              <td>{user.email}</td>
+              <td>{user.address.city}</td>
+              <td>{user.phone}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const users = [
   {
-    userName: "admin",
-    password: "admin",
-    role: "admin",
+    userName: 'admin',
+    password: 'admin',
+    role: 'admin',
   },
   {
-    userName: "user",
-    password: "user",
-    role: "user",
+    userName: 'user',
+    password: 'user',
+    role: 'user',
   },
 ];
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleUserNameInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -36,33 +36,25 @@ const LoginPage: React.FC = () => {
     const user = users.find((user) => user.userName === userName);
 
     if (!user) {
-      alert("User does not exist");
+      alert('User does not exist');
       return;
     }
 
     if (user.password !== password) {
-      alert("Invalid password");
+      alert('Invalid password');
       return;
     }
 
-    localStorage.setItem("user", JSON.stringify(user));
-    navigate(user.role === "admin" ? "/users" : "/");
+    localStorage.setItem('user', JSON.stringify(user));
+    navigate(user.role === 'admin' ? '/users' : '/');
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "960px",
-      }}
-    >
-      <h1>Login</h1>
-      <div style={{ padding: "1.5em", border: "1px solid #ccc" }}>
+    <div className="login-container">
+      <h1 className="login-header">Login</h1>
+      <div className="login-form-container">
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
               id="username"
@@ -72,7 +64,7 @@ const LoginPage: React.FC = () => {
               onChange={handleUserNameInputChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               id="password"
@@ -82,7 +74,9 @@ const LoginPage: React.FC = () => {
               onChange={handlePasswordInputChange}
             />
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" className="login-button">
+            Login
+          </button>
         </form>
       </div>
     </div>

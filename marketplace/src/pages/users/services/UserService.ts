@@ -1,12 +1,10 @@
 // src/services/UserService.ts
 import { HttpClient } from '../../../utils/http/HttpClient';
 
-// Інтерфейс для користувача
 export interface User {
     id: number;
     email: string;
     username: string;
-    password: string; // Якщо потрібно, можеш не включати це поле у реальному проекті з міркувань безпеки
     name: {
         firstname: string;
         lastname: string;
@@ -24,15 +22,15 @@ export interface User {
     phone: string;
 }
 
-type CreateUserRequest = Omit<User, 'id'>; // Створення користувача без id
-type UpdateUserRequest = User; // Оновлення користувача включає id
+type CreateUserRequest = Omit<User, 'id'>;
+type UpdateUserRequest = User;
 
 export class UserService {
     private httpClient: HttpClient;
 
     constructor(signal?: AbortSignal) {
         this.httpClient = new HttpClient({
-            baseURL: 'https://fakestoreapi.com/users', // URL бази даних для користувачів
+            baseURL: 'https://fakestoreapi.com/users',
             timeout: 10000,
             signal,
         });

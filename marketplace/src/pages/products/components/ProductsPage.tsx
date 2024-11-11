@@ -44,14 +44,37 @@ const ProductsPage: React.FC = () => {
       <h1>Products Page</h1>
       {loading && <p>Loading...</p>} {}
       {error && <p>Error: {error}</p>} {}
-      <ul className="products-list">
-        {products.map((product) => (
-          <li className="product-item" key={product.id}>
-            <span className="product-title">{product.title}</span>
-            <span className="product-price">${product.price}</span>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.title}</td>
+              <td>${product.price}</td>
+              <td>{product.description}</td>
+              <td>{product.category}</td>
+              <td>
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  width="50"
+                  height="50"
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

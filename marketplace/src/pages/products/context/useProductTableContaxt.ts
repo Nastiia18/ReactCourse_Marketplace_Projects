@@ -1,5 +1,5 @@
-/*import { useContext } from "react";
-import { ProductContext, ProductDispatchContext } from "../context/product.context"; // Змінити на ваш правильний шлях
+import { useContext } from "react";
+import { ProductContext, ProductDispatchContext } from "./product.context";
 
 export const useProductContext = () => {
   const context = useContext(ProductContext);
@@ -8,13 +8,10 @@ export const useProductContext = () => {
 
 export const useProductDispatchContext = () => {
   const context = useContext(ProductDispatchContext);
-
   if (!context) {
     throw new Error(
       "useProductDispatchContext must be used within a ProductDispatchContextProvider"
     );
   }
-
   return context;
-};*/
-
+};

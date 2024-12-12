@@ -24,6 +24,7 @@ const UsersTableComponent: React.FC<UsersTableProps> = ({
           <th>City</th>
           <th>Phone</th>
           <th>Actions</th>
+          <th>Render Count</th>
         </tr>
       </thead>
       <tbody>

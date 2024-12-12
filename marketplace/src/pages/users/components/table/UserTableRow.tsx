@@ -1,6 +1,7 @@
 import { memo, useState } from 'react';
 import { User } from '../../services/UserService';
 import UserTitleInput from './UserTitleInput';
+import { useRenderCount } from '../../../../hooks/useRenderCount';
 
 interface UserTableRowProps {
   user: User;
@@ -15,6 +16,7 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
 }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [firstName, setFirstName] = useState(user.name.firstname);
+  const renderCount = useRenderCount();
 
   const handleSave = () => {
     onSaveUser(user.id, firstName);
@@ -51,6 +53,7 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
           </>
         )}
       </td>
+      <td>{renderCount}</td>
     </tr>
   );
 };

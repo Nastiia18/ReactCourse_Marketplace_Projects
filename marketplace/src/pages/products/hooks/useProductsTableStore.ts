@@ -42,10 +42,9 @@ export const useProductsTableStore = () => {
     }
   }, []);
 
-  const updateProductTitle = (productTitle: string, id: number) => {
-
+  const updateProductTitle = useCallback((productTitle: string, id: number) => {
     dispatch(updateProductTitleAction(id, productTitle));
-  };
+  }, []);
 
   return {
     productList: state.productList,

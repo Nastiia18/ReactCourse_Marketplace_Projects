@@ -18,5 +18,5 @@ const initialProductContext: ProductContextProps = {
   error: null,
 };
 
-export const ProductContext = createContext<ProductContextProps | undefined>(undefined);
+export const ProductContext = createContext<ProductContextProps | undefined>(initialProductContext);
 export const ProductDispatchContext = createContext<ProductDispatchContextProps | undefined>(undefined);

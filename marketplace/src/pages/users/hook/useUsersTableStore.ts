@@ -2,7 +2,7 @@ import { useCallback, useEffect, useReducer, useState } from "react";
 import { User, UserService } from "../services/UserService";
 import { AxiosError } from "axios";
 import { initialUserState, userReducer } from "../store/user.reducer";
-import { deleteUserAction, setUserListAction, updateUserNameAction } from "../store/user.actions";
+import { deleteUserAction, setUserListAction, updateUserNameAction, addUserAction  } from "../store/user.actions";
 
 export const useUsersTableStore = () => {
   const [state, dispatch] = useReducer(userReducer, initialUserState);
@@ -36,6 +36,14 @@ useEffect(() => {
   return () => abortController.abort();
 }, []);
 
+const addUser = useCallback((newUser: User) => {
+  const newId = state.users.length > 0 
+    ? Math.max(...state.users.map((user) => user.id)) + 1 
+    : 1;
+
+  dispatch(addUserAction({ ...newUser, id: newId }));
+}, [state.users]);
+
 
 const handleUserDelete = useCallback(async (id: number) => {
   try {
@@ -62,6 +70,7 @@ return {
   error,
   handleUserDelete,
   handleSaveUser,
+  addUser,
 };
 };
 

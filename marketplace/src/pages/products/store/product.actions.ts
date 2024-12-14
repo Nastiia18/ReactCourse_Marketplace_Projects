@@ -1,35 +1,54 @@
-import { Product } from '../services/productsService';
+import { Product } from "../services/productsService";
 
-export type ProductActionPayloadTypes = Product[] | Product | number | { id: number; title: string };
+// Типи даних, які можуть передаватися у payload
+export type ProductActionPayloadTypes =
+  | Product[]
+  | Product
+  | number
+  | { id: number; title: string };
 
+// Інтерфейс для екшенів
 export interface ProductAction {
   type: ProductActionTypes;
   payload: ProductActionPayloadTypes;
 }
 
+// Перелічення всіх можливих типів екшенів
 export enum ProductActionTypes {
-  SET_PRODUCT_LIST = 'SET_PRODUCT_LIST',
-  ADD_PRODUCT = 'ADD_PRODUCT',
-  UPDATE_PRODUCT_TITLE = 'UPDATE_PRODUCT_TITLE',
-  DELETE_PRODUCT = 'DELETE_PRODUCT',
+  SET_PRODUCT_LIST = "SET_PRODUCT_LIST",
+  ADD_PRODUCT = "ADD_PRODUCT",
+  UPDATE_PRODUCT_TITLE = "UPDATE_PRODUCT_TITLE",
+  DELETE_PRODUCT = "DELETE_PRODUCT",
 }
 
-export const setProductListAction = (products: Product[]): ProductAction => ({
-  type: ProductActionTypes.SET_PRODUCT_LIST,
-  payload: products,
-});
+// Екшен для встановлення списку продуктів
+export const setProductListAction = (products: Product[]): ProductAction => {
+  return {
+    type: ProductActionTypes.SET_PRODUCT_LIST,
+    payload: products,
+  };
+};
 
-export const addProductAction = (product: Product): ProductAction => ({
-  type: ProductActionTypes.ADD_PRODUCT,
-  payload: product,
-});
+// Екшен для додавання нового продукту
+export const addProductAction = (product: Product): ProductAction => {
+  return {
+    type: ProductActionTypes.ADD_PRODUCT,
+    payload: product,
+  };
+};
 
-export const updateProductTitleAction = (id: number, title: string): ProductAction => ({
-  type: ProductActionTypes.UPDATE_PRODUCT_TITLE,
-  payload: { id, title },
-});
+// Екшен для оновлення назви продукту
+export const updateProductTitleAction = (id: number, title: string): ProductAction => {
+  return {
+    type: ProductActionTypes.UPDATE_PRODUCT_TITLE,
+    payload: { id, title },
+  };
+};
 
-export const deleteProductAction = (id: number): ProductAction => ({
-  type: ProductActionTypes.DELETE_PRODUCT,
-  payload: id,
-});
+// Екшен для видалення продукту
+export const deleteProductAction = (id: number): ProductAction => {
+  return {
+    type: ProductActionTypes.DELETE_PRODUCT,
+    payload: id,
+  };
+};

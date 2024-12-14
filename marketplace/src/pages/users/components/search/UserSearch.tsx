@@ -15,7 +15,7 @@ const UserSearch: React.FC<UserSearchProps> = ({
         type="text"
         className="search-input"
         value={searchQuery}
-        onChange={onSearchChange} // Викликаємо функцію при зміні
+        onChange={onSearchChange}
         placeholder="Search users..."
       />
     </div>

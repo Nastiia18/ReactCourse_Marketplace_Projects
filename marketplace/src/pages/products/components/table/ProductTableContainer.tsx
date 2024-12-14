@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-
 import ProductTable from './ProductTable';
 import Loading from '../../../../components/layout/Loading';
 import ErrorMessage from '../../../../components/layout/ErrorMessage';
@@ -8,6 +7,7 @@ import useProductsTableStore from '../../hooks/useProductsTableStore';
 import AddProduct from '../AddProduct/AddProduct';
 import { Product } from '../../services/productsService';
 import ProductSearch from '../search/ProductSearch';
+import ProductSort from '../sort/ProductSort';
 
 const ProductTableContainer = () => {
   const renderCount = useRenderCount();
@@ -21,6 +21,8 @@ const ProductTableContainer = () => {
     memoizedSaveProductButtonClickCallback,
     searchQuery,
     handleSearch,
+    sortOrder,
+    handleSortChange,
   } = useProductsTableStore();
 
   const handleProductAdd = (newProduct: Product) => {
@@ -34,7 +36,7 @@ const ProductTableContainer = () => {
       <AddProduct onProductAdd={handleProductAdd} />
 
       <ProductSearch searchQuery={searchQuery} onSearchChange={handleSearch} />
-
+      <ProductSort sortOrder={sortOrder} onSortChange={handleSortChange} />
       {loading && <Loading />}
       {error && <ErrorMessage error={error} />}
       <ProductTable

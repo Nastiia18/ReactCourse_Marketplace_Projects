@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface ProductSearchProps {
-  searchQuery: string; // Додаємо пропс для значення пошукового запиту
+  searchQuery: string;
   onSearchChange: (query: string) => void;
 }
 
@@ -15,7 +15,7 @@ const ProductSearch: React.FC<ProductSearchProps> = ({
         type="text"
         className="search-input"
         value={searchQuery}
-        onChange={(e) => onSearchChange(e.target.value)} // Викликаємо функцію для обробки зміни значення
+        onChange={(e) => onSearchChange(e.target.value)}
         placeholder="Search for products..."
       />
     </div>

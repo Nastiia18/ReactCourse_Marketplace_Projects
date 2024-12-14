@@ -14,7 +14,7 @@ export const useProductsTableStore = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
-
+  const [sortOrder, setSortOrder] = useState<string>('none');
 
   useEffect(() => {
     let isMounted = true;
@@ -51,9 +51,25 @@ export const useProductsTableStore = () => {
 
   const filteredProducts = state.productList.filter(product =>
     product.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  )
+  .sort((a, b) => {
+    if (sortOrder === 'none') {
+      return 0; // 🆕 Без сортування — залишаємо початковий порядок
+    }
+    if (sortOrder === 'asc') {
+      return a.price - b.price; // Сортування від меншої до більшої
+    } else {
+      return b.price - a.price; // Сортування від більшої до меншої
+    }
+  });
+
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+  };
+
+  const handleSortChange = (order: string) => {
+    setSortOrder(order); // 🆕 Оновлення стану сортування
   };
 
   const addProduct = useCallback((newProduct: Product) => {
@@ -94,6 +110,8 @@ export const useProductsTableStore = () => {
     memoizedSaveProductButtonClickCallback,
     searchQuery,
     handleSearch,
+    sortOrder,
+    handleSortChange,
   };
 };
 

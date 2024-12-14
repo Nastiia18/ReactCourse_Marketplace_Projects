@@ -311,3 +311,36 @@ label {
   color: #888;
   font-style: italic;
 }
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sort-label {
+  font-size: 16px;
+  color: #333; 
+  font-weight: 500;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  font-size: 16px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.sort-select:hover {
+  border-color: #555;
+}
+
+.sort-select:focus {
+  border-color: #007BFF;
+  outline: none;
+}

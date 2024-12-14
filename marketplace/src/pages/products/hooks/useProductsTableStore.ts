@@ -13,6 +13,8 @@ export const useProductsTableStore = () => {
   const [state, dispatch] = useReducer(productReducer, initialProductState);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
 
   useEffect(() => {
     let isMounted = true;
@@ -46,6 +48,14 @@ export const useProductsTableStore = () => {
     };
   }, []);
 
+
+  const filteredProducts = state.productList.filter(product =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
   const addProduct = useCallback((newProduct: Product) => {
     const newId = state.productList.length > 0
       ? Math.max(...state.productList.map((product) => product.id)) + 1
@@ -76,12 +86,14 @@ export const useProductsTableStore = () => {
   );
 
   return {
-    products: state.productList,
+    products: filteredProducts,
     loading,
     error,
     addProduct,
     memoizedProductDeleteCallback,
     memoizedSaveProductButtonClickCallback,
+    searchQuery,
+    handleSearch,
   };
 };
 

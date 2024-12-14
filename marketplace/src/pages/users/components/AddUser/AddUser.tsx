@@ -60,67 +60,84 @@ const AddUser: React.FC<AddUserProps> = ({ onUserAdd }) => {
     setPhone('');
   };
   return (
-    <div>
+    <div className="add-element-container">
       {!isFormOpen ? (
-        <button onClick={handleOpenForm}>Add User</button>
+        <button className="open-form-btn" onClick={handleOpenForm}>
+          Add User
+        </button>
       ) : (
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form className="form" onSubmit={(e) => e.preventDefault()}>
           <h3>Add New User</h3>
 
-          <div>
+          <div className="form-group">
             <label>First Name</label>
             <input
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
+              className="form-input"
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Last Name</label>
             <input
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
+              className="form-input"
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="form-input"
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label>City</label>
             <input
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
+              className="form-input"
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Phone</label>
             <input
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              className="form-input"
             />
           </div>
 
-          <button type="button" onClick={handleAddUser}>
-            Add User
-          </button>
-          <button type="button" onClick={handleCloseForm}>
-            Cancel
-          </button>
+          <div className="form-buttons">
+            <button
+              type="button"
+              className="submit-btn"
+              onClick={handleAddUser}
+            >
+              Add User
+            </button>
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={handleCloseForm}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       )}
     </div>

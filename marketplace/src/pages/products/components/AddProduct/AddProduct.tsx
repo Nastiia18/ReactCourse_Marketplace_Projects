@@ -50,67 +50,84 @@ const AddProduct: React.FC<AddProductProps> = ({ onProductAdd }) => {
   };
 
   return (
-    <div className="add-product-container">
+    <div className="add-element-container">
       {}
-      {!isFormOpen && <button onClick={handleOpenForm}>Add Product</button>}
+      {!isFormOpen && (
+        <button className="open-form-btn" onClick={handleOpenForm}>
+          Add Product
+        </button>
+      )}
 
       {}
       {isFormOpen && (
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
           <h3>Add New Product</h3>
 
-          <div>
+          <div className="form-group">
             <label>Title</label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
+              className="form-input"
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Price</label>
             <input
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
+              className="form-input"
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Description</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
+              className="form-textarea"
             ></textarea>
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Category</label>
             <input
               type="text"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
+              className="form-input"
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Image URL</label>
             <input
               type="text"
               value={image}
               onChange={(e) => setImage(e.target.value)}
+              className="form-input"
             />
           </div>
 
-          <button type="submit">Add Product</button>
-          <button type="button" onClick={handleCloseForm}>
-            Cancel
-          </button>
+          <div className="form-buttons">
+            <button type="submit" className="submit-btn">
+              Add Product
+            </button>
+            <button
+              type="button"
+              onClick={handleCloseForm}
+              className="cancel-btn"
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       )}
     </div>

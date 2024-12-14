@@ -10,7 +10,7 @@ export const useUsersTableStore = () => {
 /*const [users, setUsers] = useState<User[]>([]);*/
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState<string | null>(null);
-
+const [searchQuery, setSearchQuery] = useState<string>('');
 
 useEffect(() => {
   const abortController = new AbortController();
@@ -34,6 +34,16 @@ useEffect(() => {
 
   fetchUsers();
   return () => abortController.abort();
+}, []);
+
+
+const filteredUsers = state.users.filter(user =>
+  user.name.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  user.name.lastname.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  setSearchQuery(e.target.value);
 }, []);
 
 const addUser = useCallback((newUser: User) => {
@@ -65,12 +75,14 @@ const handleSaveUser = useCallback((id: number, firstName: string) => {
 );
 
 return {
-  users: state.users,
+  users: filteredUsers,
   loading,
   error,
   handleUserDelete,
   handleSaveUser,
   addUser,
+  searchQuery,
+  handleSearchChange,
 };
 };
 

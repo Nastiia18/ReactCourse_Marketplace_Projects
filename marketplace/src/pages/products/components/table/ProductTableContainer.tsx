@@ -7,6 +7,7 @@ import { useRenderCount } from '../../../../hooks/useRenderCount';
 import useProductsTableStore from '../../hooks/useProductsTableStore';
 import AddProduct from '../AddProduct/AddProduct';
 import { Product } from '../../services/productsService';
+import ProductSearch from '../search/ProductSearch';
 
 const ProductTableContainer = () => {
   const renderCount = useRenderCount();
@@ -18,6 +19,8 @@ const ProductTableContainer = () => {
     addProduct,
     memoizedProductDeleteCallback,
     memoizedSaveProductButtonClickCallback,
+    searchQuery,
+    handleSearch,
   } = useProductsTableStore();
 
   const handleProductAdd = (newProduct: Product) => {
@@ -29,6 +32,8 @@ const ProductTableContainer = () => {
     <div>
       <h5>ProductContainer count :{renderCount}</h5>
       <AddProduct onProductAdd={handleProductAdd} />
+
+      <ProductSearch searchQuery={searchQuery} onSearchChange={handleSearch} />
 
       {loading && <Loading />}
       {error && <ErrorMessage error={error} />}

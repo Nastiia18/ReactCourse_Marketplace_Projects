@@ -5,7 +5,8 @@ import { productReducer, initialProductState } from "../store/product.reducer";
 import {
   setProductListAction,
   deleteProductAction,
-  updateProductTitleAction
+  updateProductTitleAction,
+  addProductAction,
 } from "../store/product.actions";
 
 export const useProductsTableStore = () => {
@@ -45,6 +46,14 @@ export const useProductsTableStore = () => {
     };
   }, []);
 
+  const addProduct = useCallback((newProduct: Product) => {
+    const newId = state.productList.length > 0
+      ? Math.max(...state.productList.map((product) => product.id)) + 1
+      : 1;
+    dispatch(addProductAction({ ...newProduct, id: newId }));
+  }, [state.productList]);
+
+
   const memoizedProductDeleteCallback = useCallback(async (id: number) => {
     try {
       setLoading(true);
@@ -70,6 +79,7 @@ export const useProductsTableStore = () => {
     products: state.productList,
     loading,
     error,
+    addProduct,
     memoizedProductDeleteCallback,
     memoizedSaveProductButtonClickCallback,
   };

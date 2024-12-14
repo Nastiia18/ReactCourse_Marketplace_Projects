@@ -1,17 +1,14 @@
 import { Product } from "../services/productsService";
 import { ProductAction, ProductActionTypes } from "./product.actions";
 
-// Стан для продуктів
 export interface ProductState {
   productList: Product[];
 }
 
-// Початковий стан
 export const initialProductState: ProductState = {
   productList: [],
 };
 
-// Редюсер для обробки екшенів
 export const productReducer = (
   state: ProductState = initialProductState,
   action: ProductAction

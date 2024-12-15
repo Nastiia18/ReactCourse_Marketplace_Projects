@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from 'react';
 import ProductTable from './ProductTable';
 import Loading from '../../../../components/layout/Loading';
 import ErrorMessage from '../../../../components/layout/ErrorMessage';

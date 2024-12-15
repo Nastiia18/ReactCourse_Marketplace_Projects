@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 interface ProductSearchProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;

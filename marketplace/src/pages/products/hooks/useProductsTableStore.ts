@@ -15,6 +15,8 @@ export const useProductsTableStore = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('none');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     let isMounted = true;
@@ -54,14 +56,25 @@ export const useProductsTableStore = () => {
   )
   .sort((a, b) => {
     if (sortOrder === 'none') {
-      return 0; // 🆕 Без сортування — залишаємо початковий порядок
+      return 0;
     }
     if (sortOrder === 'asc') {
-      return a.price - b.price; // Сортування від меншої до більшої
+      return a.price - b.price;
     } else {
-      return b.price - a.price; // Сортування від більшої до меншої
+      return b.price - a.price;
     }
   });
+
+const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+const currentProducts = filteredProducts.slice(
+  (currentPage - 1) * itemsPerPage,
+  currentPage * itemsPerPage     
+);
+
+const handlePageChange = (page: number) => {
+  setCurrentPage(page);
+};
 
 
   const handleSearch = (query: string) => {
@@ -69,7 +82,7 @@ export const useProductsTableStore = () => {
   };
 
   const handleSortChange = (order: string) => {
-    setSortOrder(order); // 🆕 Оновлення стану сортування
+    setSortOrder(order);
   };
 
   const addProduct = useCallback((newProduct: Product) => {
@@ -102,7 +115,7 @@ export const useProductsTableStore = () => {
   );
 
   return {
-    products: filteredProducts,
+    products: currentProducts,
     loading,
     error,
     addProduct,
@@ -112,6 +125,9 @@ export const useProductsTableStore = () => {
     handleSearch,
     sortOrder,
     handleSortChange,
+    currentPage,
+    totalPages,
+    handlePageChange,
   };
 };
 

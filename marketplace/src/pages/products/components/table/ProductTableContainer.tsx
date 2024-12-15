@@ -8,6 +8,7 @@ import AddProduct from '../AddProduct/AddProduct';
 import { Product } from '../../services/productsService';
 import ProductSearch from '../search/ProductSearch';
 import ProductSort from '../sort/ProductSort';
+import Pagination from '../pagination/Pagination';
 
 const ProductTableContainer = () => {
   const renderCount = useRenderCount();
@@ -23,6 +24,9 @@ const ProductTableContainer = () => {
     handleSearch,
     sortOrder,
     handleSortChange,
+    currentPage,
+    totalPages,
+    handlePageChange,
   } = useProductsTableStore();
 
   const handleProductAdd = (newProduct: Product) => {
@@ -43,6 +47,11 @@ const ProductTableContainer = () => {
         products={products}
         onProductDelete={memoizedProductDeleteCallback}
         onSaveProductButtonClick={memoizedSaveProductButtonClickCallback}
+      />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
       />
     </div>
   );

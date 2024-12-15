@@ -9,6 +9,7 @@ import { Product } from '../../services/productsService';
 import ProductSearch from '../search/ProductSearch';
 import ProductSort from '../sort/ProductSort';
 import Pagination from '../pagination/Pagination';
+import ProductTableProvider from '../../context/ProductTableProvider';
 
 const ProductTableContainer = () => {
   const renderCount = useRenderCount();
@@ -35,25 +36,30 @@ const ProductTableContainer = () => {
   };
 
   return (
-    <div>
-      <h5>ProductContainer count :{renderCount}</h5>
-      <AddProduct onProductAdd={handleProductAdd} />
+    <ProductTableProvider>
+      <div>
+        <h5>ProductContainer count :{renderCount}</h5>
+        <AddProduct onProductAdd={handleProductAdd} />
 
-      <ProductSearch searchQuery={searchQuery} onSearchChange={handleSearch} />
-      <ProductSort sortOrder={sortOrder} onSortChange={handleSortChange} />
-      {loading && <Loading />}
-      {error && <ErrorMessage error={error} />}
-      <ProductTable
-        products={products}
-        onProductDelete={memoizedProductDeleteCallback}
-        onSaveProductButtonClick={memoizedSaveProductButtonClickCallback}
-      />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </div>
+        <ProductSearch
+          searchQuery={searchQuery}
+          onSearchChange={handleSearch}
+        />
+        <ProductSort sortOrder={sortOrder} onSortChange={handleSortChange} />
+        {loading && <Loading />}
+        {error && <ErrorMessage error={error} />}
+        <ProductTable
+          products={products}
+          onProductDelete={memoizedProductDeleteCallback}
+          onSaveProductButtonClick={memoizedSaveProductButtonClickCallback}
+        />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
+    </ProductTableProvider>
   );
 };
 

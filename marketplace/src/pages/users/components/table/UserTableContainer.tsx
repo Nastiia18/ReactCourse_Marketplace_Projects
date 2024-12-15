@@ -5,6 +5,7 @@ import useUsersTableStore from '../../hook/useUsersTableStore';
 import AddUser from '../AddUser/AddUser';
 import { User } from '../../services/UserService';
 import UserSearch from '../search/UserSearch';
+import UserTableProvider from '../../context/UserTableProvider';
 
 const UserTableContainer = () => {
   const {
@@ -24,20 +25,22 @@ const UserTableContainer = () => {
   };
 
   return (
-    <div>
-      <AddUser onUserAdd={handleUserAdd} />
-      <UserSearch
-        searchQuery={searchQuery} // Передаємо значення пошукового запиту
-        onSearchChange={handleSearchChange} // Передаємо функцію для обробки зміни
-      />
-      {loading && <Loading />} {}
-      {error && <ErrorMessage error={error} />} {}
-      <UsersTable
-        users={users}
-        onUserDelete={handleUserDelete}
-        onSaveUser={handleSaveUser}
-      />
-    </div>
+    <UserTableProvider>
+      <div>
+        <AddUser onUserAdd={handleUserAdd} />
+        <UserSearch
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+        />
+        {loading && <Loading />} {}
+        {error && <ErrorMessage error={error} />} {}
+        <UsersTable
+          users={users}
+          onUserDelete={handleUserDelete}
+          onSaveUser={handleSaveUser}
+        />
+      </div>
+    </UserTableProvider>
   );
 };
 

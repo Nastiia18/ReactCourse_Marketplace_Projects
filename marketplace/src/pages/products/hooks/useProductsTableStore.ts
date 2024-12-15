@@ -69,7 +69,7 @@ const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
 const currentProducts = filteredProducts.slice(
   (currentPage - 1) * itemsPerPage,
-  currentPage * itemsPerPage     
+  currentPage * itemsPerPage
 );
 
 const handlePageChange = (page: number) => {
